@@ -1,0 +1,4 @@
+aiohttp
+obs-websocket-py
+black
+isort
