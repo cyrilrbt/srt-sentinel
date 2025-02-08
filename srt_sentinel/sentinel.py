@@ -32,7 +32,7 @@ class SRTSentinel:
         """Wait until the current scene is MAIN_SCENE."""
         while True:
             current_scene = await self.obs_client.get_current_scene()
-            if current_scene != MAIN_SCENE:
+            if current_scene == MAIN_SCENE:
                 logger.info(f"Current scene is '{current_scene}'. Starting monitoring.")
                 return current_scene
             else:
@@ -43,19 +43,25 @@ class SRTSentinel:
         # Wait until the current scene is MAIN_SCENE
         current_scene = await self.wait_for_main_scene()
 
-        # Start monitoring the SRT feed
+        # Start monitoring the SRT feed and media status
         while True:
-            stats = await self.sls_client.fetch_stats()
-            if stats:
-                if self.sls_client.is_feed_healthy(stats):
-                    self.feed_has_been_healthy = True  # Mark the feed as healthy
-                    if current_scene != MAIN_SCENE:
-                        await self.obs_client.switch_scene(MAIN_SCENE)
-                        current_scene = MAIN_SCENE
-                else:
-                    # Only switch to backup scene if the feed has been healthy at least once
-                    if self.feed_has_been_healthy and current_scene != BACKUP_SCENE:
-                        logger.warning("Feed is unhealthy. Switching to backup scene.")
-                        await self.obs_client.switch_scene(BACKUP_SCENE)
-                        current_scene = BACKUP_SCENE
+            sls_healthy = await self.sls_client.is_feed_healthy()
+            media_healthy = await self.obs_client.is_media_healthy()
+            current_scene = await self.obs_client.get_current_scene()
+
+            logger.info(
+                f"Current scene: {current_scene}, SLS: {sls_healthy}, Media: {media_healthy}"
+            )
+
+            if sls_healthy and media_healthy:
+                self.feed_has_been_healthy = True  # Mark the feed as healthy
+                if current_scene != MAIN_SCENE:
+                    logger.info(f"Switching to {MAIN_SCENE}")
+                    await self.obs_client.switch_scene(MAIN_SCENE)
+            else:
+                # Only switch to backup scene if the feed has been healthy at least once
+                if self.feed_has_been_healthy and current_scene != BACKUP_SCENE:
+                    logger.info(f"Switching to {BACKUP_SCENE}")
+                    await self.obs_client.switch_scene(BACKUP_SCENE)
+
             await asyncio.sleep(POLL_INTERVAL)

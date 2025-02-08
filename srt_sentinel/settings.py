@@ -18,6 +18,7 @@ BITRATE_THRESHOLD: int = int(os.getenv("BITRATE_THRESHOLD", "500"))
 # Scene Configuration
 MAIN_SCENE: str = os.getenv("MAIN_SCENE", "").strip()
 BACKUP_SCENE: str = os.getenv("BACKUP_SCENE", "").strip()
+MEDIA_SOURCE: str = os.getenv("MEDIA_SOURCE", "").strip()
 
 # Polling Interval
 POLL_INTERVAL: int = int(os.getenv("POLL_INTERVAL", "10"))
@@ -29,6 +30,7 @@ required_env_vars = {
     "SLS_STATS_URL": SLS_STATS_URL,
     "MAIN_SCENE": MAIN_SCENE,
     "BACKUP_SCENE": BACKUP_SCENE,
+    "MEDIA_SOURCE": MEDIA_SOURCE,
 }
 
 missing_vars = [var for var, value in required_env_vars.items() if not value]

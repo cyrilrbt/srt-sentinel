@@ -17,7 +17,9 @@ class SLSClient:
                     logger.error(f"Failed to fetch SRT stats: {response.status}")
                     return {}
 
-    def is_feed_healthy(self, stats: dict) -> bool:
+    async def is_feed_healthy(self) -> bool:
+        stats = await self.fetch_stats()
+
         if not stats or stats.get("status") != "ok":
             return False
 
