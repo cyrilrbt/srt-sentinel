@@ -1,21 +1,24 @@
-[build-system]
-build-backend = "setuptools.build_meta"
-requires = ["setuptools>=42", "wheel"]
-
-[project]
-authors = [
-  {name = "Cyril Robert", email = "github.com/cyrilrbt"},
-]
-dependencies = [
-  "aiohttp",
-  "obs-websocket-py",
-  "python-dotenv",
-]
+[tool.poetry]
+authors = ["Cyril Robert <github.com/cyrilrbt>"]
 description = "A tool to monitor SRT feeds and switch OBS scenes based on feed health."
-name = "srt_sentinel"
+license = "AGPL-3.0"
+name = "srt-sentinel"
+packages = [{include = "srt_sentinel"}]
 readme = "README.md"
-requires-python = ">=3.10"
-version = "1.0.0"
+version = "1.1.0"
+
+[tool.poetry.dependencies]
+aiohttp = "^3.8"
+obs-websocket-py = "^1.0"
+python = ">=3.10"
+python-dotenv = "^1.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.0"
+isort = "^5.12"
+
+[tool.poetry.scripts]
+srt-sentinel = "srt_sentinel.cli:main"
 
 [tool.black]
 exclude = '''
@@ -32,8 +35,11 @@ exclude = '''
 )/
 '''
 include = '\.pyi?$'
-line-length = 88
+line-length = 100
 target-version = ['py310']
+
+[tool.flake8]
+max-line-length = 100
 
 [tool.isort]
 default_section = "THIRDPARTY"
@@ -41,7 +47,7 @@ ensure_newline_before_comments = true
 force_grid_wrap = 0
 include_trailing_comma = true
 known_first_party = ["srt_sentinel"]
-line_length = 88
+line_length = 100
 multi_line_output = 3
 profile = "black"
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]

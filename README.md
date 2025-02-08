@@ -18,17 +18,10 @@ A tool to monitor SRT feeds and switch OBS scenes based on feed health.
    cd srt-sentinel
    ```
 
-1. **Set up a virtual environment**:
-
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
-
 1. **Install dependencies**:
 
    ```bash
-   pip install -r requirements.txt
+   poetry install  # Requires Poetry to be installed, see https://python-poetry.org/docs/
    ```
 
 1. **Configure the .env file**:
@@ -43,7 +36,7 @@ A tool to monitor SRT feeds and switch OBS scenes based on feed health.
 Run the script:
 
 ```bash
-python srt_sentinel.py
+poetry run srt-sentinel
 ```
 
 The script will:

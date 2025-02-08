@@ -1,0 +1,3 @@
+# I don't know why vscode insists on using this file, but it does.
+[flake8]
+max-line-length = 100
