@@ -55,8 +55,11 @@ poetry run srt-sentinel
 ### What Happens? 🤖
 
 ✔️ Checks connection to **OBS WebSocket**.
+
 ✔️ Fetches stream stats from the **SRT server**.
+
 ✔️ **Monitors feed health** and detects low bitrate or stream failures.
+
 ✔️ **Switches scenes automatically** if needed.
 
 Your stream stays **smooth** even when things go wrong!
