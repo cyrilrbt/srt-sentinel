@@ -55,3 +55,13 @@ The script will:
 ## Configuration
 
 All configuration options are documented in .env.example. Copy this file to .env and fill in your settings.
+
+## License
+
+This project is licensed under the **GNU AGPL-3.0**.
+If you use this software in a **commercial setting** (e.g., as part of a paid service or product), you are required to either:
+
+1. Open-source any modifications and comply with AGPL-3.0.
+2. Obtain a **commercial license**, see COMMERCIAL_LICENSE.
+
+For commercial support, contact us at [YOUR EMAIL].
