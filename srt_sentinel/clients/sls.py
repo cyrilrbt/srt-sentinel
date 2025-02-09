@@ -49,10 +49,9 @@ class SLSClient:
         publisher = publishers.get(SLS_PUBLISHER)
 
         if not publisher:
-            # logger.warning(f"Publisher '{SLS_PUBLISHER}' is missing.")
             return False
 
-        logger.info(f"SLS stats: {stats}")
+        logger.info(f"SLS stats: {publisher}")
 
         if publisher.get("bitrate", 0) < BITRATE_THRESHOLD:
             logger.warning(
