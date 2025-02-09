@@ -56,6 +56,7 @@ class OBSClient:
         """Check if the media source is playing and not at the end."""
         media_status = await self.get_media_status()
         logger.info(f"Media status: {media_status}")
+
         if not media_status:
             return False
 

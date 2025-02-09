@@ -8,6 +8,28 @@ logger = logging.getLogger("SRT Sentinel")
 
 
 class SLSClient:
+    """
+    Example response:
+    {
+        "publishers": {
+            "publish/live/feed1": {
+                "bitrate": 697,
+                "bytesRcvDrop": 0,
+                "bytesRcvLoss": 382160,
+                "mbpsBandwidth": 9.564,
+                "mbpsRecvRate": 1.2892594018958692,
+                "msRcvBuf": 2944,
+                "pktRcvDrop": 0,
+                "pktRcvLoss": 281,
+                "rtt": 15.742,
+                "uptime": 7
+            }
+        },
+        "status": "ok"
+    }
+
+    """
+
     async def fetch_stats(self) -> dict:
         async with aiohttp.ClientSession() as session:
             async with session.get(SLS_STATS_URL) as response:
@@ -27,8 +49,10 @@ class SLSClient:
         publisher = publishers.get(SLS_PUBLISHER)
 
         if not publisher:
-            logger.warning(f"Publisher '{SLS_PUBLISHER}' is missing.")
+            # logger.warning(f"Publisher '{SLS_PUBLISHER}' is missing.")
             return False
+
+        logger.info(f"SLS stats: {stats}")
 
         if publisher.get("bitrate", 0) < BITRATE_THRESHOLD:
             logger.warning(
