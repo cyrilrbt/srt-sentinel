@@ -4,6 +4,8 @@ A **lightweight** yet **powerful** tool to monitor **Secure Reliable Transport (
 
 Never get caught with a frozen feed again—SRT Sentinel **watches your stream like a hawk** and ensures your viewers see only the best!
 
+Note: I made chatgpt generate this README
+
 ---
 
 ## 🚀 **Features**
