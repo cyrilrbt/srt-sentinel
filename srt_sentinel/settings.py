@@ -30,7 +30,6 @@ required_env_vars = {
     "SLS_STATS_URL": SLS_STATS_URL,
     "MAIN_SCENE": MAIN_SCENE,
     "BACKUP_SCENE": BACKUP_SCENE,
-    "MEDIA_SOURCE": MEDIA_SOURCE,
 }
 
 missing_vars = [var for var, value in required_env_vars.items() if not value]

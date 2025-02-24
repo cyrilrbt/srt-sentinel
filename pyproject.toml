@@ -5,7 +5,7 @@ license = "AGPL-3.0"
 name = "srt-sentinel"
 packages = [{include = "srt_sentinel"}]
 readme = "README.md"
-version = "1.2.1"
+version = "1.2.2"
 
 [tool.poetry.dependencies]
 aiohttp = "^3.8"

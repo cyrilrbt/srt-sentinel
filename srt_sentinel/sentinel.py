@@ -46,14 +46,11 @@ class SRTSentinel:
         # Start monitoring the SRT feed and media status
         while True:
             sls_healthy = await self.sls_client.is_feed_healthy()
-            media_healthy = await self.obs_client.is_media_healthy()
             current_scene = await self.obs_client.get_current_scene()
 
-            logger.info(
-                f"Current scene: {current_scene}, SLS: {sls_healthy}, Media: {media_healthy}"
-            )
+            logger.info(f"Current scene: {current_scene}, SLS: {sls_healthy}")
 
-            if sls_healthy and media_healthy:
+            if sls_healthy:
                 self.feed_has_been_healthy = True  # Mark the feed as healthy
                 if current_scene != MAIN_SCENE:
                     logger.info(f"Switching to {MAIN_SCENE}")

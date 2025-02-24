@@ -8,6 +8,10 @@ Note: I made chatgpt generate this README
 
 ---
 
+![SRT Sentinel Screenshot](screenshot.png)
+
+---
+
 ## 🚀 **Features**
 
 - 📡 **Live SRT Monitoring** – Tracks bitrate, packet loss, and stream availability.
